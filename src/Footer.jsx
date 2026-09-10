@@ -140,7 +140,7 @@ export default function Footer({ brand = "navjot", email = "hello@navjot.dev" })
             Get in touch
           </SlideLink>
           <p className="mt-2 normal-case tracking-normal text-white/40">
-            © {year} {brand}. Built with React.
+            © {year} {brand}. All rights reserved. Built with React.
           </p>
         </div>
 
