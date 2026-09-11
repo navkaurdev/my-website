@@ -39,8 +39,15 @@ function Item({ item, isOpen, onToggle }) {
         aria-expanded={isOpen}
       >
         <span className="text-lg font-semibold text-black md:text-xl">{item.q}</span>
+        {/*
+          The mark is an SVG, not a "+" text glyph: a glyph is centred by its
+          line box rather than its ink, so font ascender/descender space left it
+          visibly off-centre — and rotating to the × amplified the offset. These
+          strokes are symmetric about the viewBox centre, so both states sit
+          true and the rotation pivots on the mark itself.
+        */}
         <span
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xl transition-transform duration-300"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-300"
           style={{
             backgroundColor: isOpen ? RED : "transparent",
             color: isOpen ? "#fff" : "#000",
@@ -48,7 +55,18 @@ function Item({ item, isOpen, onToggle }) {
             transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
           }}
         >
-          +
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
         </span>
       </button>
       <AnimatePresence initial={false}>
