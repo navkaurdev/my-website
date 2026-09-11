@@ -22,3 +22,17 @@ body {
 [id] {
   scroll-margin-top: 96px;
 }
+
+/*
+  Hides the scrollbar on a scroll container that has its own controls (the
+  testimonials carousel). The element still scrolls — by button, swipe, or
+  keyboard — so nothing becomes unreachable.
+*/
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
