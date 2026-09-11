@@ -327,8 +327,14 @@ export default function Hero({
       {/* Soft scrim for text legibility (keeps the bright look on the right) */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center gap-14 px-6 py-28 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:py-0">
+      {/*
+        Content.
+        Top padding always clears the fixed navbar (~90px unscrolled) and
+        bottom padding clears the services marquee pinned to the section's
+        bottom edge (~46px) — otherwise, on short viewports the centred column
+        overflows and slides underneath both.
+      */}
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center gap-14 px-6 pb-28 pt-32 md:px-10 lg:flex-row lg:items-center lg:justify-between">
         {/* Left content */}
         <motion.div
           variants={container}
