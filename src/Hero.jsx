@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 /* ---------- Rotating word (morphs through a list) ---------- */
@@ -112,7 +112,8 @@ export default function Hero({
   const freezeRef = useRef(null);
   // With a YouTube background the video autoplays, so start in the playing state.
   const [isPlaying, setIsPlaying] = useState(Boolean(youtubeId));
-  // Autoplay must start muted (browser policy); we unmute on first interaction.
+  // Autoplay must start muted (browser policy). We ask for sound immediately
+  // once the player is ready, and again on the first gesture if that's refused.
   const [isMuted, setIsMuted] = useState(true);
 
   // Toggle sound based on the player's REAL mute state (not React state, which
@@ -138,6 +139,29 @@ export default function Hero({
       setIsMuted(v.muted);
     }
   };
+
+  // Ask a freshly-started (muted) player for sound, then check whether the
+  // browser actually granted it. Two things can go wrong and both have to be
+  // caught: the unmute can be refused outright, or it can be honoured but stop
+  // playback, which would leave the hero sitting on a frozen frame. Only keep
+  // sound if the reel is genuinely audible AND still running; otherwise fall
+  // back to silent playback and let the first-gesture listener try again.
+  const requestSoundOnLoad = useCallback((player) => {
+    player.unMute?.();
+    player.setVolume?.(100);
+    window.setTimeout(() => {
+      const audible = player.isMuted && !player.isMuted();
+      const playing =
+        player.getPlayerState?.() === window.YT?.PlayerState?.PLAYING;
+      if (audible && playing) {
+        setIsMuted(false);
+        return;
+      }
+      player.mute?.();
+      player.playVideo?.();
+      setIsMuted(true);
+    }, 300);
+  }, []);
 
   // Initialise the YouTube player (only when a youtubeId is provided).
   useEffect(() => {
@@ -169,10 +193,17 @@ export default function Hero({
         events: {
           onReady: (e) => {
             ytReadyRef.current = true;
-            // Autoplay muted on load (and honour any pre-ready click).
+            // Start muted: autoplay is only permitted silently, and asking for
+            // sound up front would stop the reel from starting at all.
             e.target.mute();
             e.target.playVideo();
             pendingPlayRef.current = false;
+            // Then immediately ask for sound. Where the browser allows it (the
+            // user has enough media engagement with this site, or autoplay is
+            // permitted by policy) the reel is audible from load with no
+            // interaction. Where it doesn't, this is refused silently and the
+            // first-gesture listener below takes over.
+            requestSoundOnLoad(e.target);
           },
           onStateChange: (e) => {
             if (e.data === YT.PlayerState.PLAYING) {
@@ -211,7 +242,7 @@ export default function Hero({
       // Remove any iframe the API left behind so only the live player shows.
       if (ytHostRef.current) ytHostRef.current.innerHTML = "";
     };
-  }, [youtubeId]);
+  }, [youtubeId, requestSoundOnLoad]);
 
   // Browsers block autoplay WITH sound, so turn sound on (and ensure the reel
   // is playing) at the first sign of the user: cursor movement, scroll, or any
