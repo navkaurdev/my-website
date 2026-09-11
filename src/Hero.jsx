@@ -334,159 +334,168 @@ export default function Hero({
         bottom edge (~46px) — otherwise, on short viewports the centred column
         overflows and slides underneath both.
       */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center gap-14 px-6 pb-28 pt-32 md:px-10 lg:flex-row lg:items-center lg:justify-between">
-        {/* Left content */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="max-w-2xl"
-        >
-          {/* Certified badge */}
+      {/*
+        Padding sits on this outer box and max-w-7xl is centred inside it,
+        matching how every other left-aligned section is built (Services,
+        Results, Projects). Putting the padding inside the centred box instead
+        pushes the content in by one px-10 and leaves the hero misaligned with
+        the rest of the page.
+      */}
+      <div className="relative z-10 flex min-h-screen w-full flex-col justify-center px-6 pb-28 pt-32 md:px-10">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-14 lg:flex-row lg:items-center lg:justify-between">
+          {/* Left content */}
           <motion.div
-            variants={fadeUp}
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md"
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="max-w-2xl"
           >
-            <span className="flex h-2 w-2">
-              <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[#ff2a2a] opacity-75" />
-              <span className="inline-flex h-2 w-2 rounded-full bg-[#ff2a2a]" />
-            </span>
-            Certified Shopify Developer
-          </motion.div>
-
-          <motion.p
-            variants={fadeUp}
-            className="mt-6 text-lg font-medium tracking-wide text-white/80 drop-shadow-lg md:text-xl"
-          >
-            Hi, I'm Navjot 👋
-          </motion.p>
-
-          <motion.h1
-            variants={fadeUp}
-            className="mt-2 text-5xl font-black uppercase leading-[0.95] tracking-tight text-white drop-shadow-xl sm:text-6xl md:text-7xl lg:text-8xl"
-          >
-            Grow your
-            <br />
-            business{" "}
-            <RotatingWord
-              words={["online.", "sales.", "store.", "reach."]}
-              className="text-[#ff2a2a] drop-shadow-[0_4px_20px_rgba(255,42,42,0.5)]"
-            />
-          </motion.h1>
-
-          <motion.p
-            variants={fadeUp}
-            className="mt-6 max-w-lg text-base leading-relaxed text-white/80 drop-shadow-md md:text-lg"
-          >
-            I help brands sell more with{" "}
-            <span className="font-semibold text-white">
-              high-converting Shopify stores
-            </span>
-            ,{" "}
-            <span className="font-semibold text-white">SEO &amp; AEO</span>, and{" "}
-            <span className="font-semibold text-white">paid ads</span> that
-            actually deliver ROI - online and offline.
-          </motion.p>
-
-          {/* Buttons */}
-          <motion.div
-            variants={fadeUp}
-            className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
-          >
-            <a
-              href="#contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition-transform duration-300 hover:scale-105"
+            {/* Certified badge */}
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md"
             >
-              Get Free Store Audit
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                →
+              <span className="flex h-2 w-2">
+                <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[#ff2a2a] opacity-75" />
+                <span className="inline-flex h-2 w-2 rounded-full bg-[#ff2a2a]" />
               </span>
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-8 py-4 text-sm font-semibold uppercase tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/10"
+              Certified Shopify Developer
+            </motion.div>
+
+            <motion.p
+              variants={fadeUp}
+              className="mt-6 text-lg font-medium tracking-wide text-white/80 drop-shadow-lg md:text-xl"
             >
-              Book a Call
-            </a>
+              Hi, I'm Navjot 👋
+            </motion.p>
+
+            <motion.h1
+              variants={fadeUp}
+              className="mt-2 text-5xl font-black uppercase leading-[0.95] tracking-tight text-white drop-shadow-xl sm:text-6xl md:text-7xl lg:text-8xl"
+            >
+              Grow your
+              <br />
+              business{" "}
+              <RotatingWord
+                words={["online.", "sales.", "store.", "reach."]}
+                className="text-[#ff2a2a] drop-shadow-[0_4px_20px_rgba(255,42,42,0.5)]"
+              />
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              className="mt-6 max-w-lg text-base leading-relaxed text-white/80 drop-shadow-md md:text-lg"
+            >
+              I help brands sell more with{" "}
+              <span className="font-semibold text-white">
+                high-converting Shopify stores
+              </span>
+              ,{" "}
+              <span className="font-semibold text-white">SEO &amp; AEO</span>, and{" "}
+              <span className="font-semibold text-white">paid ads</span> that
+              actually deliver ROI - online and offline.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
+            >
+              <a
+                href="#contact"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold uppercase tracking-wide text-black transition-transform duration-300 hover:scale-105"
+              >
+                Get Free Store Audit
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/5 px-8 py-4 text-sm font-semibold uppercase tracking-wide text-white backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/10"
+              >
+                Book a Call
+              </a>
+            </motion.div>
+
+            {/* Animated stats */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-12 flex flex-wrap gap-x-10 gap-y-6"
+            >
+              {[
+                { v: 50, suffix: "+", label: "Stores built" },
+                { v: 4.2, suffix: "×", label: "Avg. ROAS" },
+                { v: 5, suffix: "+", label: "Years growing brands" },
+              ].map((s, i) => (
+                <div key={s.label}>
+                  <p className="text-3xl font-black text-white drop-shadow-lg md:text-4xl">
+                    <CountUp value={s.v} suffix={s.suffix} delay={800 + i * 200} />
+                  </p>
+                  <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* Animated stats */}
+          {/* Right side — Play Reel */}
           <motion.div
-            variants={fadeUp}
-            className="mt-12 flex flex-wrap gap-x-10 gap-y-6"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-14 flex flex-col items-center lg:mt-0"
           >
-            {[
-              { v: 50, suffix: "+", label: "Stores built" },
-              { v: 4.2, suffix: "×", label: "Avg. ROAS" },
-              { v: 5, suffix: "+", label: "Years growing brands" },
-            ].map((s, i) => (
-              <div key={s.label}>
-                <p className="text-3xl font-black text-white drop-shadow-lg md:text-4xl">
-                  <CountUp value={s.v} suffix={s.suffix} delay={800 + i * 200} />
-                </p>
-                <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60">
-                  {s.label}
-                </p>
-              </div>
-            ))}
+            <button
+              onClick={togglePlay}
+              aria-label={isPlaying ? "Pause reel" : "Play reel"}
+              className="group relative flex h-28 w-28 items-center justify-center rounded-full border border-white/40 bg-white/5 backdrop-blur-md transition-all duration-500 hover:scale-110 hover:border-[#ff2a2a] hover:shadow-[0_0_45px_10px_rgba(255,42,42,0.55)] md:h-36 md:w-36"
+            >
+              {isPlaying ? (
+                // Pause icon
+                <svg
+                  className="h-9 w-9 text-white transition-transform duration-300 group-hover:scale-110 md:h-11 md:w-11"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <rect x="6" y="5" width="4" height="14" rx="1" />
+                  <rect x="14" y="5" width="4" height="14" rx="1" />
+                </svg>
+              ) : (
+                // Play icon
+                <svg
+                  className="ml-1 h-9 w-9 text-white transition-transform duration-300 group-hover:scale-110 md:h-11 md:w-11"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+            </button>
+            <span className="mt-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+              {isPlaying ? "Pause" : "Play Reel"}
+            </span>
+
+            {/* Sound toggle — video autoplays muted; unmute for audio */}
+            <button
+              onClick={toggleSound}
+              aria-label={isMuted ? "Unmute" : "Mute"}
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/80 backdrop-blur-md transition-all duration-300 hover:border-[#ff2a2a] hover:text-white"
+            >
+              {isMuted ? (
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v2.2l2.45 2.45c.03-.2.05-.41.05-.62zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.9 8.9 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.94-2.25 1.2v2.06a8.94 8.94 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z" />
+                </svg>
+              ) : (
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7.001 7.001 0 0 1 0 13.42v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                </svg>
+              )}
+              {isMuted ? "Sound off" : "Sound on"}
+            </button>
           </motion.div>
-        </motion.div>
-
-        {/* Right side — Play Reel */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-14 flex flex-col items-center lg:mt-0"
-        >
-          <button
-            onClick={togglePlay}
-            aria-label={isPlaying ? "Pause reel" : "Play reel"}
-            className="group relative flex h-28 w-28 items-center justify-center rounded-full border border-white/40 bg-white/5 backdrop-blur-md transition-all duration-500 hover:scale-110 hover:border-[#ff2a2a] hover:shadow-[0_0_45px_10px_rgba(255,42,42,0.55)] md:h-36 md:w-36"
-          >
-            {isPlaying ? (
-              // Pause icon
-              <svg
-                className="h-9 w-9 text-white transition-transform duration-300 group-hover:scale-110 md:h-11 md:w-11"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <rect x="6" y="5" width="4" height="14" rx="1" />
-                <rect x="14" y="5" width="4" height="14" rx="1" />
-              </svg>
-            ) : (
-              // Play icon
-              <svg
-                className="ml-1 h-9 w-9 text-white transition-transform duration-300 group-hover:scale-110 md:h-11 md:w-11"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            )}
-          </button>
-          <span className="mt-5 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
-            {isPlaying ? "Pause" : "Play Reel"}
-          </span>
-
-          {/* Sound toggle — video autoplays muted; unmute for audio */}
-          <button
-            onClick={toggleSound}
-            aria-label={isMuted ? "Unmute" : "Mute"}
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/80 backdrop-blur-md transition-all duration-300 hover:border-[#ff2a2a] hover:text-white"
-          >
-            {isMuted ? (
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v2.2l2.45 2.45c.03-.2.05-.41.05-.62zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.9 8.9 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.94-2.25 1.2v2.06a8.94 8.94 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z" />
-              </svg>
-            ) : (
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7.001 7.001 0 0 1 0 13.42v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
-              </svg>
-            )}
-            {isMuted ? "Sound off" : "Sound on"}
-          </button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Infinite services marquee */}
