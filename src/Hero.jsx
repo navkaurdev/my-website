@@ -110,6 +110,10 @@ export default function Hero({
   const ytReadyRef = useRef(false);
   const pendingPlayRef = useRef(false);
   const freezeRef = useRef(null);
+  // Set once the visitor works the sound button themselves. From that point the
+  // automatic unmute below stands down for good: a deliberate mute must not be
+  // undone by the next scroll or click.
+  const userChoseSoundRef = useRef(false);
   // With a YouTube background the video autoplays, so start in the playing state.
   const [isPlaying, setIsPlaying] = useState(Boolean(youtubeId));
   // Autoplay must start muted (browser policy). We ask for sound immediately
@@ -119,6 +123,9 @@ export default function Hero({
   // Toggle sound based on the player's REAL mute state (not React state, which
   // can drift when the browser silently ignores a programmatic unmute).
   const toggleSound = () => {
+    // An explicit choice, in either direction — record it before doing anything
+    // so the automatic unmute can never talk over it.
+    userChoseSoundRef.current = true;
     const player = ytPlayerRef.current;
     if (youtubeId && player?.isMuted) {
       if (player.isMuted()) {
@@ -244,21 +251,35 @@ export default function Hero({
     };
   }, [youtubeId, requestSoundOnLoad]);
 
-  // Browsers block autoplay WITH sound, so turn sound on (and ensure the reel
-  // is playing) at the first sign of the user: cursor movement, scroll, or any
-  // interaction. Cursor/scroll aren't "activating" gestures in strict browsers,
-  // so if they're ignored the sound reliably kicks in on the first real click.
+  // Browsers block autoplay WITH sound, so turn sound on at the first sign of
+  // the user: cursor movement, scroll, or any interaction. Cursor/scroll aren't
+  // "activating" gestures in strict browsers, so if they're ignored the sound
+  // reliably kicks in on the first real click.
+  //
+  // This only ever runs while the sound state is still automatic. Two ways it
+  // stands down: the visitor touches the sound button, or the reel is already
+  // audible (which the load-time attempt may have achieved, and which would
+  // otherwise leave these listeners attached with nothing to do — the path that
+  // let a scroll undo a deliberate mute).
   useEffect(() => {
     const unmute = () => {
+      if (userChoseSoundRef.current) return cleanup();
       const player = ytPlayerRef.current;
       if (player?.unMute) {
+        if (player.isMuted && !player.isMuted()) return cleanup();
+        // Resume only if it was already running. Calling playVideo
+        // unconditionally would restart a reel the visitor had paused, which is
+        // the same kind of override as unmuting one they had muted.
+        const wasPlaying =
+          player.getPlayerState?.() === window.YT?.PlayerState?.PLAYING;
         player.unMute();
         player.setVolume(100);
-        player.playVideo?.();
+        if (wasPlaying) player.playVideo?.();
         // Only accept it (and stop listening) once the player is TRULY unmuted.
         // Strict browsers ignore unmute on cursor-move/scroll, so we keep
         // listening until a real gesture (e.g. a click) lands.
         setTimeout(() => {
+          if (userChoseSoundRef.current) return cleanup();
           if (player.isMuted && !player.isMuted()) {
             setIsMuted(false);
             cleanup();
@@ -269,7 +290,7 @@ export default function Hero({
       const v = videoRef.current;
       if (v) {
         v.muted = false;
-        v.play?.().catch(() => {});
+        if (!v.paused) v.play?.().catch(() => {});
         setIsMuted(false);
       }
       cleanup();
