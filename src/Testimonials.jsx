@@ -9,7 +9,7 @@ const RED = "#ff2a2a";
 const REVIEWS = [
   {
     quote:
-      "Navjot rebuilt our Shopify store and ran our ads — orders doubled in the first month. Finally one person who owns the whole result.",
+      "Navjot rebuilt our Shopify store and ran our ads - orders doubled in the first month. Finally one person who owns the whole result.",
     name: "Aarav Mehta",
     role: "Founder, Urban Threads",
   },

@@ -385,7 +385,7 @@ export default function Hero({
             ,{" "}
             <span className="font-semibold text-white">SEO &amp; AEO</span>, and{" "}
             <span className="font-semibold text-white">paid ads</span> that
-            actually deliver ROI — online and offline.
+            actually deliver ROI - online and offline.
           </motion.p>
 
           {/* Buttons */}

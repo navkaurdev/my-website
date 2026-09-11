@@ -16,7 +16,7 @@ const Icon = ({ d }) => (
 const SERVICES = [
   {
     title: "Shopify Development",
-    desc: "High-converting, lightning-fast stores — custom themes, migrations, apps and CRO baked in.",
+    desc: "High-converting, lightning-fast stores - custom themes, migrations, apps and CRO baked in.",
     icon: <Icon d={<><path d="M6 2 3 6v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6l-3-4Z" /><path d="M3 6h18M16 10a4 4 0 0 1-8 0" /></>} />,
   },
   {
@@ -26,7 +26,7 @@ const SERVICES = [
   },
   {
     title: "AEO",
-    desc: "Answer Engine Optimization — get cited by ChatGPT, Google AI Overviews and voice search.",
+    desc: "Answer Engine Optimization - get cited by ChatGPT, Google AI Overviews and voice search.",
     icon: <Icon d={<><path d="M12 3a9 9 0 1 0 9 9" /><path d="M12 7v5l3 2" /><path d="M16 3h5v5" /></>} />,
   },
   {
@@ -41,7 +41,7 @@ const SERVICES = [
   },
   {
     title: "Lead Generation",
-    desc: "Full funnels — landing pages, offers, email & SMS flows that turn visitors into customers.",
+    desc: "Full funnels - landing pages, offers, email & SMS flows that turn visitors into customers.",
     icon: <Icon d={<><path d="M22 12h-4l-3 9L9 3l-3 9H2" /></>} />,
   },
 ];
@@ -61,7 +61,7 @@ export default function Services() {
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-white/60">
             Most brands juggle a developer and a marketer who never talk. I do
-            both — so your store and your traffic pull in the same direction.
+            both - so your store and your traffic pull in the same direction.
           </p>
         </div>
 

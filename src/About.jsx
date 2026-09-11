@@ -142,12 +142,12 @@ export default function About({
               Certified Shopify Developer
             </span>{" "}
             and growth partner. I build high-converting stores and drive the
-            traffic that fills them — so your brand actually sells.
+            traffic that fills them - so your brand actually sells.
           </p>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
             One accountable partner for design, development, SEO, AEO and paid
-            ads — obsessed with speed, conversions and real ROI, online and off.
+            ads - obsessed with speed, conversions and real ROI, online and off.
           </p>
 
           {/* Capability tiles */}

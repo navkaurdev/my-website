@@ -19,7 +19,7 @@ const CASES = [
     tag: "Fashion · Shopify",
     title: "From stalled to scaling",
     result: "+218% revenue in 90 days",
-    desc: "Rebuilt the store for speed, fixed SEO foundations and launched Meta + Google — tripled monthly orders.",
+    desc: "Rebuilt the store for speed, fixed SEO foundations and launched Meta + Google - tripled monthly orders.",
   },
   {
     tag: "Home & Living",

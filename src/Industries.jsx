@@ -31,7 +31,7 @@ export default function Industries() {
           We serve all industries
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-neutral-500">
-          I stay on top of my craft by becoming an expert in yours — from
+          I stay on top of my craft by becoming an expert in yours - from
           e-commerce and retail to finance, hospitality, healthcare and beyond.
         </p>
       </div>

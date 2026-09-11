@@ -54,7 +54,7 @@ export default function Audit() {
 
           <p className="mt-5 max-w-md text-lg leading-relaxed text-black/70">
             Send me your store and I'll record a short teardown with 3 specific,
-            high-impact fixes — no cost, no obligation.
+            high-impact fixes - no cost, no obligation.
           </p>
 
           <ul className="mt-8 space-y-4">

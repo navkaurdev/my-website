@@ -21,7 +21,7 @@ const STEPS = [
     title: "Define",
     side: "right",
     rotate: 3,
-    desc: "We dig into your goals, users and constraints — turning a fuzzy idea into a sharp, prioritised plan.",
+    desc: "We dig into your goals, users and constraints - turning a fuzzy idea into a sharp, prioritised plan.",
   },
   {
     n: "02",
@@ -42,7 +42,7 @@ const STEPS = [
     title: "Launch & Grow",
     side: "left",
     rotate: -2.5,
-    desc: "Go live, then scale with paid ads, SEO/AEO and CRO — measured, reported and iterated monthly.",
+    desc: "Go live, then scale with paid ads, SEO/AEO and CRO - measured, reported and iterated monthly.",
   },
 ];
 
@@ -155,7 +155,7 @@ export default function Process() {
 
         <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-neutral-500 md:text-lg">
           A clear, four-step process that turns ambitious ideas into fast,
-          scalable products — no guesswork, no surprises.
+          scalable products - no guesswork, no surprises.
         </p>
       </div>
 

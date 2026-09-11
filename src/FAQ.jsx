@@ -22,7 +22,7 @@ const QA = [
   },
   {
     q: "Do I need both development and marketing?",
-    a: "Not necessarily — you can hire me for just a store build, just growth, or the full package. Most brands see the best results when both work together.",
+    a: "Not necessarily - you can hire me for just a store build, just growth, or the full package. Most brands see the best results when both work together.",
   },
   {
     q: "How do we get started?",
