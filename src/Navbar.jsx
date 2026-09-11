@@ -66,7 +66,7 @@ export default function Navbar({ logo = "Navjot" }) {
       <nav
         className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 ease-out md:px-10 ${
           scrolled
-            ? "my-2 rounded-full border border-white/10 bg-black/40 py-2.5 shadow-lg backdrop-blur-xl md:my-3"
+            ? "my-2 rounded-full bg-black/40 py-2.5 shadow-lg backdrop-blur-xl md:my-3"
             : "bg-transparent py-6 md:py-8"
         }`}
       >
